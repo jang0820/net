@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>Vlan203</head>
+<meta charset="UTF-8">
+<body>
+<table border="1" align="center">
+    <tr><th>IP</th><th>MAC</th><th>交換器</th><th>交換器port</th><th>主機</th></tr>
+    {% for m in vlan %}
+    <tr>
+        <td>{{m.0}}</td><td>{{m.1}}</td><td>{{m.2}}</td><td>{{m.3}}</td><td>{{m.4}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

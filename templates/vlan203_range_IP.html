@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+        <title> Vlan203 </title>
+    </head>
+    <body>
+        {% if f.errors %}
+        <p>
+            請修復表單
+        </p>
+        {% endif %}
+        <form action="" method="post"> {% csrf_token %}
+            <table>
+                <tr>設定查詢範圍為203.68.236.[ip1]到203.68.236.[ip2]</tr>
+                {{ f.as_table }}
+            </table>
+            <input type="submit" value="查詢">
+        </form>
+        <br><br>
+        <h2>區間IP詳細資訊以{{ vlan_ip.0.0 }}為開始位址</h2>
+        {% if vlan_ip %}
+            <h3>目前共有{{ vlan_ip | length }}條資訊</h3>
+            <table border = '1'><th>IP</th><th>MAC</th><th>交換器</th><th>交換器port</th><th>主機</th>
+            {% for v in vlan_ip %}
+                <tr>
+                    <td> {{ v.0 }} </td>
+                    <td> {{ v.1 }} </td>
+                    <td> {{ v.2 }} </td>
+                    <td> {{ v.3 }} </td>
+                    <td> {{ v.4 }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+            <p>無此IP的資料</p>
+        {% endif %}
+
+    </body>
+</html>
