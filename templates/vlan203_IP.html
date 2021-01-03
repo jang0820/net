@@ -5,6 +5,7 @@
         <title> Vlan203 </title>
     </head>
     <body>
+    {% if requese.user.is_authenticated %}
         <h2>{{ vlan_ip.0.0 }}的詳細資訊</h2>
         {% if vlan_ip %}
             <h3>目前共有{{ vlan_ip | length }}條關於{{ vlan_ip.0.0 }}的資訊</h3>
@@ -34,5 +35,8 @@
             </table>
             <input type="submit" value="查詢">
         </form>
+    {% else %}
+        <p>尚未登入，請點選 <a href="/login/">登入</a></p><br>
+    {% endif %}
     </body>
 </html>

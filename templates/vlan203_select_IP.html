@@ -5,6 +5,7 @@
         <title> Vlan203 </title>
     </head>
     <body>
+    {% if requese.user.is_authenticated %}
         {% if f.errors %}
         <p>
             請修復表單
@@ -34,6 +35,8 @@
         {% else %}
             <p>無此IP的資料</p>
         {% endif %}
-
+    {% else %}
+        <p>尚未登入，請點選 <a href="/login/">登入</a></p><br>
+    {% endif %}
     </body>
 </html>

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from my.models import My
 from my.forms import SearchIPForm, SearchIPSelectForm, SearchIPRangeForm
+from django.contrib import auth
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 def vlan203(request):
@@ -49,3 +51,22 @@ def vlan203_range_IP(request):
     else:
         f = SearchIPRangeForm()
     return render(request, 'vlan203_range_IP.html', locals())
+
+def login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/index/')
+    uname = request.POST.get('uname', '')
+    pword = request.POST.get('pword', '')
+    user = auth.authenticate(username=uname, password=pword)
+    if user is not None and user.is_active:
+        auth.login(request, user)
+        return HttpResponseRedirect('/index/')
+    else:
+        return render(request, 'login.html', locals())
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect('/index/')
+
+def index(request):
+    return render(request, 'index.html', locals())

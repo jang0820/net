@@ -3,6 +3,7 @@
 <head>Vlan203</head>
 <meta charset="UTF-8">
 <body>
+{% if requese.user.is_authenticated %}
 <table border="1" align="center">
     <tr><th>IP</th><th>MAC</th><th>交換器</th><th>交換器port</th><th>主機</th></tr>
     {% for m in vlan %}
@@ -11,5 +12,8 @@
     </tr>
     {% endfor %}
 </table>
+{% else %}
+   <p>尚未登入，請點選 <a href="/login/">登入</a></p><br>
+{% endif %}
 </body>
 </html>

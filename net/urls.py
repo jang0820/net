@@ -25,4 +25,7 @@ urlpatterns = [
     path('vlan203_select_IP/', vlan203_select_IP),
     path('vlan203_range_IP/', vlan203_range_IP),
     path('vlan10/', vlan10),
+    path('login/', login),
+    path('index/', index),
+    path('logout/', logout),
 ]
